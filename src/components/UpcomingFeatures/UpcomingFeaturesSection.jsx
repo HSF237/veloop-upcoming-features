@@ -33,27 +33,45 @@ export const UpcomingFeaturesSection = () => {
         {/* Section Header */}
         <header className={styles.sectionHeader}>
           <div className={styles.eyebrowBadge}>
-            <span className={styles.sparkleIcon}>✨</span>
-            <span>VELOOP REWARDS ROADMAP</span>
+            <span className={styles.sparkleIcon}>✦</span>
+            <span>COMING SOON</span>
+            <span className={styles.sparkleIcon}>✦</span>
           </div>
           <h2 id="upcoming-features-heading" className={styles.headingTitle}>
-            More Ways to Earn Are Coming
+            More Ways to Earn <span className={styles.titleHighlight}>ARE COMING</span>
           </h2>
           <p className={styles.headingSubtitle}>
-            Discover the next generation of rewards, team competitions, and gamified earning experiences coming soon to VELOOP Rewards.
+            Discover the next generation of rewards, challenges, and experiences coming to <strong>VELOOP Rewards</strong>.
           </p>
         </header>
 
         {/* Responsive Grid System (4 top / 3 bottom layout on Desktop) */}
         <div className={styles.featuresGrid}>
-          {upcomingFeaturesData.map((item) => (
+          {upcomingFeaturesData.map((item, idx) => (
             <UpcomingFeatureCard
               key={item.id}
               data={item}
+              index={idx}
               onNotify={handleNotify}
               onKnowMore={handleKnowMore}
             />
           ))}
+        </div>
+
+        {/* Bottom Notice Summary Banner matching design brief */}
+        <div className={styles.bottomBanner}>
+          <div className={styles.bannerLeft}>
+            <span className={styles.bannerIcon}>🎁</span>
+            <span>
+              These features are currently under development and will be available soon. <strong>Stay tuned for exciting updates!</strong>
+            </span>
+          </div>
+          <div className={styles.bannerDivider} />
+          <div className={styles.bannerRight}>
+            <span className={styles.bannerBrand}>VELOOP</span>
+            <span className={styles.bannerSubBrand}>REWARDS</span>
+            <span className={styles.bannerTrophy}>🏆</span>
+          </div>
         </div>
       </div>
 

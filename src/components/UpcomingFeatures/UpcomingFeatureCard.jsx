@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
 import { FeatureVisual } from './FeatureVisuals';
 
-export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
+export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -17,9 +17,9 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    // Smooth 3D tilt calculation
-    const rotateX = ((y - centerY) / centerY) * -9;
-    const rotateY = ((x - centerX) / centerX) * 9;
+    // Subtle 3D tilt calculation (max 6deg)
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
     
     const posX = (x / rect.width) * 100;
     const posY = (y / rect.height) * 100;
@@ -35,16 +35,19 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
     setSpotlight({ x: 50, y: 50, opacity: 0 });
   };
 
-  const handleNotifyClick = (e) => {
+  const handleKnowMoreClick = (e) => {
+    e.stopPropagation();
+    if (onKnowMore) onKnowMore(data);
+  };
+
+  const handleCtaClick = (e) => {
     e.stopPropagation();
     setNotified(true);
     if (onNotify) onNotify(data.title);
   };
 
-  const handleKnowMoreClick = (e) => {
-    e.stopPropagation();
-    if (onKnowMore) onKnowMore(data);
-  };
+  // Staggered cascade entrance delay (100ms, 160ms, 220ms, 280ms, 340ms, 400ms, 460ms)
+  const animationDelay = `${100 + index * 60}ms`;
 
   return (
     <article
@@ -56,6 +59,7 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
       onClick={handleKnowMoreClick}
       tabIndex={0}
       style={{
+        animationDelay,
         transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(${isHovered ? '-8px' : '0px'})`
       }}
     >
@@ -63,24 +67,16 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
       <div
         className={styles.mouseSpotlight}
         style={{
-          background: `radial-gradient(400px circle at ${spotlight.x}% ${spotlight.y}%, rgba(212, 175, 55, 0.18), transparent 70%)`,
+          background: `radial-gradient(350px circle at ${spotlight.x}% ${spotlight.y}%, rgba(212, 175, 55, 0.16), transparent 70%)`,
           opacity: spotlight.opacity,
         }}
       />
 
       <div className={styles.cardInner}>
-        {/* Top Header Row with Badge & Info Trigger */}
+        {/* Top Header Row with Number Badge & Status Badge */}
         <div className={styles.cardHeader}>
+          <span className={styles.numberBadge}>{data.number}</span>
           <span className={styles.badge}>{data.badge}</span>
-          <button
-            type="button"
-            className={styles.infoBadgeBtn}
-            onClick={handleKnowMoreClick}
-            aria-label={`View detailed info about ${data.title}`}
-            title="Know More"
-          >
-            ⓘ Info
-          </button>
         </div>
 
         {/* Dynamic 3D Illustrated Section */}
@@ -94,23 +90,16 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
           <p className={styles.cardDescription}>{data.description}</p>
         </div>
 
-        {/* Dual Button Footer Row */}
+        {/* CTA Button Row with Sliding Arrow */}
         <div className={styles.cardFooter}>
           <button
             type="button"
-            className={styles.secondaryButton}
-            onClick={handleKnowMoreClick}
-            aria-label={`Know more about ${data.title}`}
+            className={`${styles.stayTunedBtn} ${notified ? styles.stayTunedNotified : ''}`}
+            onClick={handleCtaClick}
+            aria-label={`${data.cta} for ${data.title}`}
           >
-            Know More
-          </button>
-          <button
-            type="button"
-            className={`${styles.ctaButton} ${notified ? styles.ctaNotified : ''}`}
-            onClick={handleNotifyClick}
-            aria-label={`Notify me when ${data.title} becomes available`}
-          >
-            {notified ? '✓ Set' : 'Notify Me'}
+            <span>{notified ? '✓ Subscribed' : 'Stay Tuned'}</span>
+            <span className={styles.ctaArrow}>→</span>
           </button>
         </div>
       </div>
