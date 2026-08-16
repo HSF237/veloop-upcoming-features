@@ -1,26 +1,14 @@
 import React, { useState } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
 import { UpcomingFeatureCard } from './UpcomingFeatureCard';
-import { FeatureModal } from './FeatureModal';
 import { upcomingFeaturesData } from './upcomingFeatures.data';
 
 export const UpcomingFeaturesSection = () => {
   const [toastMessage, setToastMessage] = useState(null);
-  const [activeModalFeature, setActiveModalFeature] = useState(null);
-  const [notifiedFeatures, setNotifiedFeatures] = useState({});
 
   const handleNotify = (title) => {
-    setNotifiedFeatures((prev) => ({ ...prev, [title]: true }));
-    setToastMessage(`We're working on something exciting! You will be notified as soon as ${title} launches.`);
+    setToastMessage(`We're working on something exciting! Stay tuned for the launch of ${title}.`);
     setTimeout(() => setToastMessage(null), 3800);
-  };
-
-  const handleKnowMore = (feature) => {
-    setActiveModalFeature(feature);
-  };
-
-  const handleCloseModal = () => {
-    setActiveModalFeature(null);
   };
 
   return (
@@ -46,23 +34,12 @@ export const UpcomingFeaturesSection = () => {
               key={item.id}
               data={item}
               onNotify={handleNotify}
-              onKnowMore={handleKnowMore}
             />
           ))}
         </div>
       </div>
 
-      {/* Feature Details Modal */}
-      {activeModalFeature && (
-        <FeatureModal
-          feature={activeModalFeature}
-          onClose={handleCloseModal}
-          onNotify={handleNotify}
-          isNotified={!!notifiedFeatures[activeModalFeature.title]}
-        />
-      )}
-
-      {/* Toast Notification */}
+      {/* Toast Notification (per Page 14-15 specification) */}
       {toastMessage && (
         <div className={styles.toastNotification} role="status" aria-live="polite">
           <span className={styles.toastDot} aria-hidden="true" />

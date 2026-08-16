@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
 import { FeatureVisual } from './FeatureVisuals';
 
-export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
+export const UpcomingFeatureCard = ({ data, onNotify }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [notified, setNotified] = useState(false);
@@ -29,15 +29,10 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
     setRotation({ x: 0, y: 0 });
   };
 
-  const handleNotifyClick = (e) => {
+  const handleCardClick = (e) => {
     e.stopPropagation();
     setNotified(true);
     if (onNotify) onNotify(data.title);
-  };
-
-  const handleKnowMoreClick = (e) => {
-    e.stopPropagation();
-    if (onKnowMore) onKnowMore(data, notified);
   };
 
   return (
@@ -47,25 +42,16 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleKnowMoreClick}
+      onClick={handleCardClick}
       tabIndex={0}
       style={{
         transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(${isHovered ? '-6px' : '0px'})`
       }}
     >
       <div className={styles.cardInner}>
-        {/* Top Header Row with Badge & Info Button */}
+        {/* Top Header Row with Badge */}
         <div className={styles.cardHeader}>
           <span className={styles.badge}>{data.badge}</span>
-          <button
-            type="button"
-            className={styles.infoBadgeBtn}
-            onClick={handleKnowMoreClick}
-            aria-label={`View detailed info about ${data.title}`}
-            title="Know More"
-          >
-            ⓘ Info
-          </button>
         </div>
 
         {/* Dynamic 3D Illustrated Section */}
@@ -79,23 +65,15 @@ export const UpcomingFeatureCard = ({ data, onNotify, onKnowMore }) => {
           <p className={styles.cardDescription}>{data.description}</p>
         </div>
 
-        {/* Action Buttons Row */}
+        {/* Full-width Single CTA Button (per Page 11 wireframe) */}
         <div className={styles.cardFooter}>
           <button
             type="button"
-            className={styles.secondaryButton}
-            onClick={handleKnowMoreClick}
-            aria-label={`Know more about ${data.title}`}
-          >
-            Know More
-          </button>
-          <button
-            type="button"
             className={`${styles.ctaButton} ${notified ? styles.ctaNotified : ''}`}
-            onClick={handleNotifyClick}
+            onClick={handleCardClick}
             aria-label={`Notify me when ${data.title} becomes available`}
           >
-            {notified ? '✓ Set' : 'Notify Me'}
+            {notified ? '✓ Notification Set' : 'Notify Me'}
           </button>
         </div>
       </div>
