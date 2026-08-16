@@ -647,10 +647,11 @@
   100% { transform: translateX(-3px); }
 }
 
-/* 2. Lucky Draw NON-STOP Continuous Wheel Rotation */
+/* 2. Lucky Draw NON-STOP Continuous Wheel Rotation around exact (80px, 58px) axle */
 .spinningWheel {
+  transform-box: view-box !important;
+  transform-origin: 80px 58px !important;
   animation: spinWheelContinuous 10s linear infinite !important;
-  transform-origin: center;
 }
 
 .cardContainerHovered .spinningWheel {
