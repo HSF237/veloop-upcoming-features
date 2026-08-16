@@ -138,7 +138,9 @@ Adheres strictly to the task height and grid specifications:
 
 ## 11. Live Demo
 
-- **Vercel / Netlify Link**: *(Available upon deployment)*
+- **Vercel Live Demo**: [https://veloop-upcoming-features-hasans-projects-a89be687.vercel.app](https://veloop-upcoming-features-hasans-projects-a89be687.vercel.app)
+- **Vercel Project**: [https://vercel.com/hasans-projects-a89be687/veloop-upcoming-features](https://vercel.com/hasans-projects-a89be687/veloop-upcoming-features)
+
 
 ---
 
