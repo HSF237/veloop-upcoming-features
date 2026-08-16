@@ -1,0 +1,534 @@
+/* Container & Dashboard Background Context (#161827 body background) */
+.mainWrapper {
+  position: relative;
+  background-color: #161827;
+  padding: 4rem 1.5rem 6rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.backgroundMesh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 15%, rgba(42, 54, 94, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1280px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+}
+
+/* Header Typography */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.headingTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #f3f4f6;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.headingSubtitle {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Flexbox Layout Architecture for Perfect Centering */
+.featuresGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* 3D Card Architecture */
+.cardContainer {
+  width: calc(25% - 1.125rem);
+  height: 430px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  position: relative;
+  background: linear-gradient(145deg, rgba(35, 42, 70, 0.45), rgba(18, 22, 38, 0.8));
+  border: 1.2px solid rgba(212, 175, 55, 0.22);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.22s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  outline: none;
+}
+
+.cardContainer:focus-visible {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4), 0 16px 32px rgba(0, 0, 0, 0.4);
+}
+
+.cardContainer:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.15);
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem 1.15rem 1.15rem;
+  box-sizing: border-box;
+}
+
+/* Header Row: Badge + Info Trigger */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: rgba(30, 41, 69, 0.75);
+  color: #93c5fd;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(147, 197, 253, 0.25);
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.infoBadgeBtn {
+  background: rgba(212, 175, 55, 0.12);
+  color: #fde047;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.infoBadgeBtn:hover {
+  background: rgba(212, 175, 55, 0.28);
+  border-color: #d4af37;
+  color: #ffffff;
+}
+
+/* 3D Graphic Area */
+.visualContainer {
+  height: 130px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.4rem 0;
+}
+
+.visualWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgGraphic {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ambientGlow {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+/* Text Content */
+.cardContent {
+  flex-grow: 1;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardTitle {
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.01em;
+}
+
+.cardDescription {
+  font-size: 0.83rem;
+  color: #94a3b8;
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Dual Button Footer Row */
+.cardFooter {
+  margin-top: auto;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.secondaryButton {
+  flex: 1;
+  background: rgba(30, 41, 69, 0.6);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  padding: 0.65rem 0;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  white-space: nowrap;
+}
+
+.secondaryButton:hover {
+  background: rgba(45, 59, 95, 0.8);
+  color: #ffffff;
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.ctaButton {
+  flex: 1;
+  background: #1e243a;
+  color: #e2e8f0;
+  border: 1px solid #2e385b;
+  padding: 0.65rem 0;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  white-space: nowrap;
+}
+
+.ctaButton:focus-visible,
+.secondaryButton:focus-visible {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.4);
+}
+
+.ctaButton:hover {
+  background: #283252;
+  color: #ffffff;
+  border-color: #d4af37;
+}
+
+.ctaNotified {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+/* Modal Window Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 13, 24, 0.82);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modalContent {
+  position: relative;
+  background: linear-gradient(150deg, #1b2138 0%, #121626 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(212, 175, 55, 0.15);
+  border-radius: 24px;
+  max-width: 520px;
+  width: 100%;
+  padding: 2rem 1.75rem 1.75rem;
+  box-sizing: border-box;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #f1f5f9;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalCloseBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.modalVisualContainer {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.modalHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.modalTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.modalSubtitle {
+  font-size: 0.92rem;
+  color: #d4af37;
+  margin: 0;
+  font-weight: 500;
+}
+
+.modalBody {
+  margin-bottom: 1.5rem;
+}
+
+.modalDescription {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0 0 1.2rem 0;
+  text-align: center;
+}
+
+.highlightsContainer {
+  background: rgba(18, 24, 43, 0.6);
+  border: 1px solid rgba(46, 58, 95, 0.6);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.2rem;
+}
+
+.highlightsHeading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 0.6rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.highlightsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.highlightCheck {
+  color: #10b981;
+  font-weight: 800;
+}
+
+.statusBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px stroke rgba(212, 175, 55, 0.25);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #fde047;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fde047;
+  box-shadow: 0 0 6px #fde047;
+}
+
+.modalFooter {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cardContainer:hover .spinningWheel {
+  animation: spinSlow 9s linear infinite;
+}
+
+.cardContainer:hover .boxLid {
+  transform: translateY(-4px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cardContainer:hover .chestLid {
+  transform: translateY(-3px) rotate(-3deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cardContainer:hover .glowingStar {
+  transform: scale(1.15);
+  transform-origin: 148px 36px;
+  transition: transform 0.3s ease;
+}
+
+.cardContainer:hover .leftFighter {
+  transform: translateX(3px);
+  transition: transform 0.25s ease;
+}
+
+.cardContainer:hover .rightFighter {
+  transform: translateX(-3px);
+  transition: transform 0.25s ease;
+}
+
+.cardContainer:hover .primaryCard {
+  transform: rotate(14deg) translateY(-4px);
+  transition: transform 0.3s ease;
+}
+
+/* Global Toast Alert */
+.toastNotification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #1b2238;
+  color: #f1f5f9;
+  border: 1px solid #d4af37;
+  padding: 0.85rem 1.4rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 3000;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toastDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1080px) {
+  .cardContainer {
+    width: calc(50% - 0.75rem);
+    height: 410px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardContainer {
+    width: 100%;
+    height: 390px;
+  }
+  .headingTitle {
+    font-size: 1.65rem;
+  }
+  .modalContent {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+  .modalFooter {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,50 @@
+.app-shell {
+  min-height: 100vh;
+  background: #161827;
+  color: #f5f6fb;
+}
+
+.app-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(16px, 4vw, 48px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(155deg, #caa356, #4f7cf6);
+  color: #10132a;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.brand-tag {
+  font-size: 12px;
+  color: rgba(226, 227, 240, 0.55);
+}
+
+.app-footer {
+  padding: 24px clamp(16px, 4vw, 48px) 40px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(226, 227, 240, 0.4);
+}
