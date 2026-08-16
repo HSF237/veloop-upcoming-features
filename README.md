@@ -144,10 +144,11 @@ Adheres strictly to the task height and grid specifications:
 
 ## 12. GitHub Repository
 
-- **Repository**: *(Available upon upload)*
+- **Repository**: [https://github.com/HSF237/veloop-upcoming-features](https://github.com/HSF237/veloop-upcoming-features)
 
 ---
 
 ## 13. Author
 
-**Frontend Engineering Intern** — VELOOP Rewards Task Assignment
+**Hasan (HSF237)** — VELOOP Rewards Frontend Development Internship, Task 10.
+
