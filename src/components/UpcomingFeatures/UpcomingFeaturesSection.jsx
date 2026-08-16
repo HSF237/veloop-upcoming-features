@@ -84,7 +84,7 @@ export const UpcomingFeaturesSection = () => {
           </div>
           <div className={styles.bannerDivider} />
           <div className={styles.bannerRight}>
-            <img src="/veloop-logo-transparent.png" alt="VELOOP Logo" style={{ width: '22px', height: '22px', marginRight: '6px', objectFit: 'contain' }} />
+            <img src="/logo.png" alt="VELOOP Logo" style={{ width: '22px', height: '22px', marginRight: '6px', objectFit: 'contain' }} />
             <span className={styles.bannerBrand}>VELOOP</span>
             <span className={styles.bannerSubBrand}>REWARDS</span>
             <span className={styles.bannerTrophy}>🏆</span>

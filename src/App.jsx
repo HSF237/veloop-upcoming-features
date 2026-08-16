@@ -7,7 +7,7 @@ function App() {
     <div className="app-shell">
       <header className="app-topbar">
         <div className="brand">
-          <img src="/veloop-logo-transparent.png" alt="VELOOP Logo" className="brand-logo" />
+          <img src="/logo.png" alt="VELOOP Logo" className="brand-logo" />
           <span className="brand-name">VELOOP Rewards</span>
         </div>
       </header>

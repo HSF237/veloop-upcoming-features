@@ -1,9 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════
    VELOOP REWARDS — UPCOMING FEATURES — ULTRA-PREMIUM DARK FINTECH UI
-   Premium Typography: Inter + Space Grotesk via Google Fonts
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ── 0. CSS Custom Properties ── */
 :root {
   --gold: #d4af37;
   --gold-light: #fde047;
@@ -20,9 +18,7 @@
   --white: #f1f5f9;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   1. MAIN WRAPPER
-   ══════════════════════════════════════════════════════════════ */
+/* 1. Main Wrapper */
 .mainWrapper {
   position: relative;
   background-color: var(--navy);
@@ -36,9 +32,7 @@
   overflow: hidden;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   2. LIVING BACKGROUND SYSTEM
-   ══════════════════════════════════════════════════════════════ */
+/* 2. Living Background System */
 .backgroundMesh {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -52,45 +46,38 @@
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 50px 50px;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.5;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
-@keyframes bgDrift {
-  0%   { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.05) translateY(-8px); opacity: 1; }
-}
-
-/* Floating Gradient Orbs */
-.orbContainer {
+.particlesContainer {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
-.gradientOrb {
+.ambientDot {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.55;
 }
 
-.orb1 { width: 350px; height: 350px; top: -8%; left: -8%; background: radial-gradient(circle, rgba(59,130,246,0.6), transparent 70%); animation: orbDrift1 14s ease-in-out infinite alternate; }
-.orb2 { width: 300px; height: 300px; bottom: -8%; right: -8%; background: radial-gradient(circle, rgba(212,175,55,0.5), transparent 70%); animation: orbDrift2 18s ease-in-out infinite alternate; }
-.orb3 { width: 220px; height: 220px; top: 35%; left: 55%; background: radial-gradient(circle, rgba(168,85,247,0.4), transparent 70%); animation: orbDrift1 22s ease-in-out infinite alternate; }
+.dot1 { width: 4px; height: 4px; top: 12%; left: 10%; background: var(--gold-light); box-shadow: 0 0 14px var(--gold-light); animation: floatA 7s ease-in-out infinite alternate; }
+.dot2 { width: 3px; height: 3px; top: 78%; left: 88%; background: var(--blue-light); box-shadow: 0 0 12px var(--blue-light); animation: floatB 9s ease-in-out infinite alternate; }
+.dot3 { width: 3px; height: 3px; top: 28%; left: 82%; background: var(--gold-light); box-shadow: 0 0 10px var(--gold-light); animation: floatA 8s ease-in-out infinite alternate; }
+.dot4 { width: 4px; height: 4px; top: 82%; left: 18%; background: var(--purple-accent); box-shadow: 0 0 12px var(--purple-accent); animation: floatB 10s ease-in-out infinite alternate; }
+.dot5 { width: 3px; height: 3px; top: 50%; left: 50%; background: var(--gold-light); box-shadow: 0 0 10px var(--gold-light); animation: floatA 6s ease-in-out infinite alternate; }
 
-@keyframes orbDrift1 { 0% { transform: translate(0,0); } 100% { transform: translate(50px,35px); } }
-@keyframes orbDrift2 { 0% { transform: translate(0,0); } 100% { transform: translate(-60px,-45px); } }
+@keyframes floatA { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-22px) translateX(15px); } }
+@keyframes floatB { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(25px) translateX(-20px); } }
 
-/* ══════════════════════════════════════════════════════════════
-   3. CONTAINER & TOP CONTROLS
-   ══════════════════════════════════════════════════════════════ */
+/* 3. Container */
 .container {
   max-width: 1280px;
   width: 100%;
@@ -99,75 +86,16 @@
   margin: 0 auto;
 }
 
-.topControlBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.viewModeSwitcher {
-  display: flex;
-  background: rgba(18, 24, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-  padding: 4px;
-  backdrop-filter: blur(10px);
-}
-
-.modeBtn {
-  background: transparent;
-  border: none;
-  color: #94a3b8;
-  padding: 0.45rem 1.1rem;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.modeBtnActive {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(59, 130, 246, 0.25));
-  color: #ffffff;
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-}
-
-.soundToggleBtn {
-  background: rgba(18, 24, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #94a3b8;
-  padding: 0.45rem 1.1rem;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(10px);
-}
-
-.soundActive {
-  color: #fde047;
-  border-color: rgba(253, 224, 71, 0.4);
-  box-shadow: 0 0 12px rgba(253, 224, 71, 0.2);
-}
-
-/* ══════════════════════════════════════════════════════════════
-   4. SECTION HEADER
-   ══════════════════════════════════════════════════════════════ */
+/* 4. Section Header */
 .sectionHeader {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.8rem;
   animation: headerReveal 1s cubic-bezier(0.16,1,0.3,1);
 }
 
 @keyframes headerReveal {
-  from { opacity: 0; transform: translateY(-30px); filter: blur(8px); }
-  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  from { opacity: 0; transform: translateY(-25px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .eyebrowBadge {
@@ -230,52 +158,7 @@
   line-height: 1.6;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   5. CATEGORY FILTER TABS
-   ══════════════════════════════════════════════════════════════ */
-.categoryFilterBar {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 2.8rem;
-}
-
-.categoryTab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: rgba(18, 24, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
-  padding: 0.5rem 1.1rem;
-  border-radius: 9999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(6px);
-}
-
-.categoryTab:hover {
-  background: rgba(30, 41, 69, 0.85);
-  color: #ffffff;
-  border-color: rgba(212, 175, 55, 0.4);
-}
-
-.categoryTabActive {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(59, 130, 246, 0.25));
-  color: #ffffff;
-  border-color: #fde047;
-  box-shadow: 0 0 15px rgba(253, 224, 71, 0.25);
-}
-
-.catIcon { font-size: 0.95rem; }
-
-/* ══════════════════════════════════════════════════════════════
-   6. FEATURES GRID & CARD 3D FLIP
-   ══════════════════════════════════════════════════════════════ */
+/* 5. Features Grid */
 .featuresGrid {
   display: flex;
   flex-wrap: wrap;
@@ -285,6 +168,7 @@
   margin-bottom: 3.5rem;
 }
 
+/* 6. Card Container with In-Card Lighting (Contained Strictly Inside) */
 .cardOuter {
   --accent: #d4af37;
   width: calc(25% - 1.125rem);
@@ -292,19 +176,19 @@
   position: relative;
   border-radius: 22px;
   padding: 1px;
-  background: rgba(22, 28, 48, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(22, 28, 48, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 .cardOuter:hover {
   border-color: var(--accent);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-20, rgba(212,175,55,0.15));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 25px var(--accent-20, rgba(212,175,55,0.15)), 0 0 25px var(--accent-20, rgba(212,175,55,0.2));
 }
 
-.borderGlow {
-  display: none;
-}
+.borderGlow { display: none; }
 
 .cardRevealHidden { opacity: 0; transform: translateY(50px) scale(0.93); filter: blur(8px); }
 .cardRevealVisible {
@@ -318,34 +202,62 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 20.5px;
+  border-radius: 20px;
   position: relative;
   z-index: 1;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  background: linear-gradient(160deg, var(--navy-card-surface) 0%, var(--navy-card) 100%);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
   cursor: pointer;
+  outline: none;
+  overflow: hidden; /* STOPS LIGHT FROM BLEEDING OUTSIDE THE CARD */
 }
 
-.cardContainerHovered {
-  box-shadow: 0 25px 60px rgba(0,0,0,0.65), 0 0 35px var(--accent-20, rgba(212,175,55,0.2)) !important;
-}
-
-/* Card Front and Back Faces */
-.cardFrontFace,
-.cardBackFace {
+/* In-Card Dynamic Cursor Spotlight Light */
+.mouseSpotlight {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: 20.5px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+  border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(160deg, var(--navy-card-surface) 0%, var(--navy-card) 100%);
 }
 
-.cardBackFace {
-  transform: rotateY(180deg);
-  background: linear-gradient(160deg, #18203c 0%, #0d1222 100%);
-  border: 1px solid var(--accent, rgba(212, 175, 55, 0.4));
+.topEdgeLight {
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 2px;
+  z-index: 5;
+  opacity: 0.75;
+  border-radius: 0 0 4px 4px;
+}
+
+.cardGlossSheen {
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 42%,
+    rgba(255,255,255,0.08) 48%,
+    rgba(255,255,255,0.14) 50%,
+    rgba(255,255,255,0.08) 52%,
+    transparent 58%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.cardContainerHovered .cardGlossSheen {
+  opacity: 1;
+  animation: sheenSweep 1.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+@keyframes sheenSweep {
+  0%   { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
 }
 
 .noiseOverlay {
@@ -355,22 +267,6 @@
   z-index: 4;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
-
-.topEdgeLight {
-  position: absolute;
-  top: 0; left: 15%; right: 15%;
-  height: 1.5px;
-  z-index: 5;
-  opacity: 0.6;
-}
-
-.mouseSpotlight {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  z-index: 1;
 }
 
 .cardInner {
@@ -387,29 +283,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.headerControls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.flipTriggerBtn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fde047;
-  font-size: 0.62rem;
-  font-weight: 700;
-  padding: 0.22rem 0.55rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.flipTriggerBtn:hover {
-  background: rgba(253, 224, 71, 0.2);
-  transform: scale(1.05);
 }
 
 .numberBadge {
@@ -446,6 +319,8 @@
   justify-content: center;
   margin: 0.2rem 0;
   transition: transform 0.3s ease;
+  overflow: hidden; /* SCOPES LIGHT INSIDE VISUAL BOX */
+  border-radius: 16px;
 }
 
 .visualWrapper {
@@ -462,6 +337,20 @@
   height: 100%;
   max-height: 125px;
   overflow: visible;
+}
+
+.ambientGlow {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  filter: blur(24px);
+  pointer-events: none;
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0%   { transform: scale(0.85); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 1; }
 }
 
 .cardContainerHovered .visualContainer { transform: scale(1.08) translateY(-3px); }
@@ -528,133 +417,80 @@
 .burstSparkle { position: absolute; width: 5px; height: 5px; border-radius: 50%; animation: sparkleBurstAnim 0.7s ease forwards; }
 @keyframes sparkleBurstAnim { 0% { opacity: 1; } 100% { opacity: 0; } }
 
-/* BACK FACE CONTENT */
-.backHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.8rem;
+/* 7. ALL 7 SVG MICRO-ANIMATION ENGINE RULES */
+.spinningWheel, .pulseRing, .sparkParticle, .sparkParticleAlt,
+.leftFighter, .rightFighter, .ledDot, .ledDotAlt,
+.floatingCoinLeft, .floatingCoinRight, .animatedPath,
+.glowingStar, .haloRing, .primaryCard, .shimmerLine,
+.boxLid, .portalRing, .sparkleOne, .sparkleTwo,
+.mysteryOrb, .chestLid, .laserLine, .satelliteNode, .satelliteNodeAlt {
+  transform-box: fill-box;
 }
 
-.backTag {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
-  border: 1px solid;
-  background: rgba(18, 24, 42, 0.8);
-}
+/* 1. Team Battle VS Shockwave Pulse & Sparks */
+.pulseRing { animation: shockwavePulse 2s ease-out infinite; transform-origin: center; }
+@keyframes shockwavePulse { 0% { r: 22px; opacity: 1; stroke-width: 2px; } 100% { r: 36px; opacity: 0; stroke-width: 0.5px; } }
+.sparkParticle { animation: sparkFloat 2s ease-in-out infinite alternate; }
+.sparkParticleAlt { animation: sparkFloatAlt 2.5s ease-in-out infinite alternate; }
+@keyframes sparkFloat { 0% { transform: translateY(0) scale(1); opacity: 0.3; } 100% { transform: translateY(-8px) scale(1.5); opacity: 1; } }
+@keyframes sparkFloatAlt { 0% { transform: translateY(0) scale(1.3); opacity: 1; } 100% { transform: translateY(-10px) scale(0.8); opacity: 0.2; } }
+.leftFighter { animation: leftShift 3.5s ease-in-out infinite alternate; }
+.rightFighter { animation: rightShift 3.5s ease-in-out infinite alternate; }
+@keyframes leftShift { 0% { transform: translateX(0); } 100% { transform: translateX(3px); } }
+@keyframes rightShift { 0% { transform: translateX(0); } 100% { transform: translateX(-3px); } }
 
-.flipBackBtn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #cbd5e1;
-  font-size: 0.7rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
+/* 2. Lucky Draw 360 Axis Wheel Rotation & LED Blinks */
+.spinningWheel { transform-box: view-box !important; transform-origin: 80px 58px !important; animation: spinWheelContinuous 10s linear infinite !important; }
+.cardContainerHovered .spinningWheel { animation-duration: 3s !important; }
+@keyframes spinWheelContinuous { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.ledDot { animation: ledBlink 1.2s ease-in-out infinite alternate; }
+.ledDotAlt { animation: ledBlinkAlt 1.2s ease-in-out infinite alternate; }
+@keyframes ledBlink { 0% { opacity: 0.3; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.3); fill: var(--gold-light); } }
+@keyframes ledBlinkAlt { 0% { opacity: 1; transform: scale(1.3); fill: var(--gold-light); } 100% { opacity: 0.3; transform: scale(0.8); } }
+.floatingCoinLeft { animation: coinBounceLeft 3s ease-in-out infinite alternate; }
+.floatingCoinRight { animation: coinBounceRight 3.5s ease-in-out infinite alternate; }
+@keyframes coinBounceLeft { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-6px) rotate(15deg); } }
+@keyframes coinBounceRight { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-8px) rotate(-18deg); } }
 
-.backTitle {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 0.2rem 0;
-}
+/* 3. Milestone Rewards Laser Path & Star Halo Spin */
+.animatedPath { animation: dashAnimation 1.8s linear infinite; }
+@keyframes dashAnimation { from { stroke-dashoffset: 26; } to { stroke-dashoffset: 0; } }
+.glowingStar { animation: starPulse 2.5s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes starPulse { 0% { transform: scale(1); } 100% { transform: scale(1.12); } }
+.haloRing { animation: haloSpin 6s linear infinite; transform-origin: center; }
+@keyframes haloSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-.backSubtitle {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  margin: 0 0 1rem 0;
-}
+/* 4. Collect Cards Holographic Shimmer Sweep */
+.primaryCard { animation: cardHoverFloat 4s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes cardHoverFloat { 0% { transform: rotate(10deg) translateY(0); } 100% { transform: rotate(14deg) translateY(-6px); } }
+.shimmerLine { animation: shimmerMove 2.5s ease-in-out infinite; }
+@keyframes shimmerMove { 0% { opacity: 0.1; stroke-dasharray: 0 100; } 50% { opacity: 0.9; stroke-dasharray: 50 50; } 100% { opacity: 0.1; stroke-dasharray: 100 0; } }
 
-.backHighlights {
-  background: rgba(14, 18, 32, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-}
+/* 5. Surprise Gift Box Lid Breathing & Rising Sparkles */
+.boxLid { animation: boxLidBreath 2.5s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes boxLidBreath { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
+.portalRing { animation: portalPulse 3s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes portalPulse { 0% { transform: scale(0.95); stroke: #a855f7; } 100% { transform: scale(1.08); stroke: var(--gold-light); } }
+.sparkleOne { animation: sparkleRise 2.5s ease-in-out infinite alternate; }
+.sparkleTwo { animation: sparkleRiseAlt 3s ease-in-out infinite alternate; }
+@keyframes sparkleRise { 0% { transform: translateY(0) scale(0.8); opacity: 0.3; } 100% { transform: translateY(-10px) scale(1.3); opacity: 1; } }
+@keyframes sparkleRiseAlt { 0% { transform: translateY(0) scale(1.2); opacity: 1; } 100% { transform: translateY(-12px) scale(0.7); opacity: 0.3; } }
 
-.highlightsLabel {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #cbd5e1;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: block;
-  margin-bottom: 0.4rem;
-}
+/* 6. Mystery Chest Anti-Gravity Question Orb */
+.mysteryOrb { animation: orbFloatBounce 2.8s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes orbFloatBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+.chestLid { animation: chestBreath 3.5s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes chestBreath { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-2px) rotate(-2deg); } }
 
-.highlightsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
+/* 7. Referral Network Laser Streams & Pulsing Satellites */
+.laserLine { animation: laserPulseFlow 2s linear infinite; }
+@keyframes laserPulseFlow { from { stroke-dashoffset: 16; } to { stroke-dashoffset: 0; } }
+.satelliteNode { animation: nodePulse 3s ease-in-out infinite alternate; transform-origin: center; }
+.satelliteNodeAlt { animation: nodePulseAlt 3.5s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes nodePulse { 0% { transform: scale(0.95); } 100% { transform: scale(1.12); } }
+@keyframes nodePulseAlt { 0% { transform: scale(1.12); } 100% { transform: scale(0.95); } }
 
-.highlightItem {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.75rem;
-  color: #94a3b8;
-}
-
-.checkIcon { font-weight: 800; }
-
-.backPhaseBox {
-  margin-top: auto;
-  margin-bottom: 0.8rem;
-}
-
-.phaseHeader {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #94a3b8;
-  margin-bottom: 0.35rem;
-}
-
-.phaseTrack {
-  height: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.phaseBar {
-  height: 100%;
-  border-radius: 3px;
-}
-
-.modalLaunchBtn {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1.5px solid;
-  padding: 0.55rem;
-  border-radius: 10px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  font-family: 'Space Grotesk', sans-serif;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.modalLaunchBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-}
-
-/* ══════════════════════════════════════════════════════════════
-   7. BOTTOM BANNER & MODAL & TOAST
-   ══════════════════════════════════════════════════════════════ */
+/* 8. Bottom Notice Banner */
 .bottomBanner {
   display: flex;
   align-items: center;
