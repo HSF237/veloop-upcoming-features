@@ -1,0 +1,177 @@
+/* Only visible on mobile (≤768px) */
+.railContainer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .railContainer {
+    display: block;
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 320px;
+    width: 40px;
+    z-index: 500;
+    pointer-events: auto;
+  }
+
+  /* Background Track Line (dim gold) */
+  .trackLine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    transform: translateX(-50%);
+    background: rgba(212, 175, 55, 0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  /* Fill Line (bright gold, grows with scroll) */
+  .trackFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, #fde047, #d4af37);
+    border-radius: 3px;
+    transition: height 0.3s ease-out;
+    box-shadow: 0 0 10px rgba(253, 224, 71, 0.5);
+  }
+
+  /* Trophy Climber */
+  .trophyClimber {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: top 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .trophyIcon {
+    font-size: 18px;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.9));
+    animation: trophyBounce 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes trophyBounce {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-3px) scale(1.1); }
+  }
+
+  .trophyGlowRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1.5px solid rgba(253, 224, 71, 0.5);
+    animation: trophyRingPulse 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes trophyRingPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+  }
+
+  /* Dot Nodes */
+  .dotNode {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(22, 28, 48, 0.95);
+    border: 2px solid rgba(212, 175, 55, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .dotEmoji {
+    font-size: 11px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Passed (scrolled past) dots */
+  .dotPassed {
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.15);
+  }
+
+  .dotPassed .dotEmoji {
+    transform: scale(1.05);
+  }
+
+  /* Active dot */
+  .dotActive {
+    width: 34px;
+    height: 34px;
+    border-color: #fde047;
+    background: rgba(22, 28, 48, 0.98);
+    box-shadow: 0 0 20px rgba(253, 224, 71, 0.45), 0 0 40px rgba(253, 224, 71, 0.15);
+  }
+
+  .dotActive .dotEmoji {
+    font-size: 14px;
+    transform: scale(1.15);
+  }
+
+  /* Pulse ring around active dot */
+  .pulseRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid #fde047;
+    animation: dotPulseAnim 1.8s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes dotPulseAnim {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+  }
+
+  /* Active dot label tooltip */
+  .dotLabel {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(22, 28, 48, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: #fde047;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: labelFadeIn 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  @keyframes labelFadeIn {
+    from { opacity: 0; transform: translateY(-50%) translateX(5px); }
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+}

@@ -28,17 +28,23 @@ const playChime = () => {
   }
 };
 
-export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
+export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef: externalCardRef }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [notified, setNotified] = useState(false);
   const [burstParticles, setBurstParticles] = useState([]);
-  const cardRef = useRef(null);
+  const internalRef = useRef(null);
+
+  // Merge internal ref with external cardRef for scroll tracking
+  const setRefs = (el) => {
+    internalRef.current = el;
+    if (externalCardRef) externalCardRef(el);
+  };
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (!internalRef.current) return;
+    const rect = internalRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
@@ -93,7 +99,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
 
   return (
     <article
-      ref={cardRef}
+      ref={setRefs}
       className={`${styles.cardContainer} ${isHovered ? styles.cardContainerHovered : ''}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

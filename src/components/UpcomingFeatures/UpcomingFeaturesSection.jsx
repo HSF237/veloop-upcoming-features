@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
 import { UpcomingFeatureCard } from './UpcomingFeatureCard';
 import { FeatureModal } from './FeatureModal';
 import { upcomingFeaturesData } from './upcomingFeatures.data';
+import ScrollProgressRail from './ScrollProgressRail';
 
 export const UpcomingFeaturesSection = () => {
   const [toastMessage, setToastMessage] = useState(null);
   const [activeModalFeature, setActiveModalFeature] = useState(null);
   const [notifiedFeatures, setNotifiedFeatures] = useState({});
+  const cardRefs = useRef([]);
+
+  const setCardRef = useCallback((el, index) => {
+    cardRefs.current[index] = el;
+  }, []);
 
   const handleNotify = (title) => {
     setNotifiedFeatures((prev) => ({ ...prev, [title]: true }));
@@ -39,7 +45,7 @@ export const UpcomingFeaturesSection = () => {
       </div>
 
       <div className={styles.container}>
-        {/* Honest, Clean & Elegant Section Header */}
+        {/* Section Header */}
         <header className={styles.sectionHeader}>
           <div className={styles.eyebrowBadge}>
             <span className={styles.sparkleIcon}>✦</span>
@@ -63,6 +69,7 @@ export const UpcomingFeaturesSection = () => {
               index={idx}
               onNotify={handleNotify}
               onKnowMore={handleKnowMore}
+              cardRef={(el) => setCardRef(el, idx)}
             />
           ))}
         </div>
@@ -83,6 +90,9 @@ export const UpcomingFeaturesSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Scroll Progress Rail with Trophy Climber */}
+      <ScrollProgressRail cardRefs={cardRefs} featuresData={upcomingFeaturesData} />
 
       {/* Feature Details Modal */}
       {activeModalFeature && (
