@@ -8,10 +8,14 @@ export const UpcomingFeaturesSection = () => {
   const [toastMessage, setToastMessage] = useState(null);
   const [activeModalFeature, setActiveModalFeature] = useState(null);
   const [notifiedFeatures, setNotifiedFeatures] = useState({});
+  const [communityCount, setCommunityCount] = useState(14280);
 
   const handleNotify = (title) => {
+    if (!notifiedFeatures[title]) {
+      setCommunityCount((prev) => prev + 1);
+    }
     setNotifiedFeatures((prev) => ({ ...prev, [title]: true }));
-    setToastMessage(`✨ Notification set! You will get priority access when ${title} launches.`);
+    setToastMessage(`✨ Priority Access Set! You will get notified the instant ${title} drops.`);
     setTimeout(() => setToastMessage(null), 3800);
   };
 
@@ -29,7 +33,24 @@ export const UpcomingFeaturesSection = () => {
       <div className={styles.backgroundMesh} aria-hidden="true" />
       <div className={styles.glowingGridLines} aria-hidden="true" />
 
+      {/* Floating Sparkle Particles Network Canvas Overlay */}
+      <div className={styles.particlesContainer} aria-hidden="true">
+        <span className={`${styles.ambientDot} ${styles.dot1}`} />
+        <span className={`${styles.ambientDot} ${styles.dot2}`} />
+        <span className={`${styles.ambientDot} ${styles.dot3}`} />
+        <span className={`${styles.ambientDot} ${styles.dot4}`} />
+        <span className={`${styles.ambientDot} ${styles.dot5}`} />
+      </div>
+
       <div className={styles.container}>
+        {/* Live Subscribed Community Counter Pill */}
+        <div className={styles.communityPill}>
+          <span className={styles.livePulseDot} />
+          <span className={styles.communityCountText}>
+            🔥 <strong>{communityCount.toLocaleString()}</strong> Community Members Subscribed for Early Access
+          </span>
+        </div>
+
         {/* Section Header */}
         <header className={styles.sectionHeader}>
           <div className={styles.eyebrowBadge}>
@@ -58,7 +79,7 @@ export const UpcomingFeaturesSection = () => {
           ))}
         </div>
 
-        {/* Bottom Notice Summary Banner matching design brief */}
+        {/* Bottom Notice Summary Banner */}
         <div className={styles.bottomBanner}>
           <div className={styles.bannerLeft}>
             <span className={styles.bannerIcon}>🎁</span>

@@ -2,11 +2,38 @@ import React, { useState, useRef } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
 import { FeatureVisual } from './FeatureVisuals';
 
+// Pure Web Audio API synthesized chime sound for ultra-premium tactile feedback
+const playChime = () => {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+    
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start();
+    osc.stop(ctx.currentTime + 0.2);
+  } catch (e) {
+    // Silent fallback if audio context is restricted
+  }
+};
+
 export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [notified, setNotified] = useState(false);
+  const [burstParticles, setBurstParticles] = useState([]);
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -17,9 +44,9 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    // Subtle 3D tilt calculation (max 6deg)
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
+    // Smooth 3D tilt calculation (max 7deg)
+    const rotateX = ((y - centerY) / centerY) * -7;
+    const rotateY = ((x - centerX) / centerX) * 7;
     
     const posX = (x / rect.width) * 100;
     const posY = (y / rect.height) * 100;
@@ -28,7 +55,11 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
     setSpotlight({ x: posX, y: posY, opacity: 1 });
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    playChime();
+  };
+
   const handleMouseLeave = () => {
     setIsHovered(false);
     setRotation({ x: 0, y: 0 });
@@ -43,10 +74,21 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
   const handleCtaClick = (e) => {
     e.stopPropagation();
     setNotified(true);
+    playChime();
+
+    // Trigger visual gold sparkle particle burst around button
+    const newParticles = Array.from({ length: 8 }).map((_, i) => ({
+      id: Date.now() + i,
+      x: (Math.random() - 0.5) * 60,
+      y: (Math.random() - 0.5) * 40 - 20,
+      scale: Math.random() * 0.8 + 0.4,
+    }));
+    setBurstParticles(newParticles);
+    setTimeout(() => setBurstParticles([]), 800);
+
     if (onNotify) onNotify(data.title);
   };
 
-  // Staggered cascade entrance delay (100ms, 160ms, 220ms, 280ms, 340ms, 400ms, 460ms)
   const animationDelay = `${100 + index * 60}ms`;
 
   return (
@@ -60,14 +102,17 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
       tabIndex={0}
       style={{
         animationDelay,
-        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(${isHovered ? '-8px' : '0px'})`
+        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(${isHovered ? '-9px' : '0px'})`
       }}
     >
-      {/* Interactive Cursor Spotlight Radial Glow */}
+      {/* High-Gloss Diagonal Sheen Reflection */}
+      <div className={styles.cardGlossSheen} />
+
+      {/* Dynamic Cursor Spotlight Radial Glow */}
       <div
         className={styles.mouseSpotlight}
         style={{
-          background: `radial-gradient(350px circle at ${spotlight.x}% ${spotlight.y}%, rgba(212, 175, 55, 0.16), transparent 70%)`,
+          background: `radial-gradient(350px circle at ${spotlight.x}% ${spotlight.y}%, rgba(212, 175, 55, 0.22), transparent 70%)`,
           opacity: spotlight.opacity,
         }}
       />
@@ -90,7 +135,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
           <p className={styles.cardDescription}>{data.description}</p>
         </div>
 
-        {/* CTA Button Row with Sliding Arrow */}
+        {/* CTA Button Row with Sliding Arrow & Particle Burst */}
         <div className={styles.cardFooter}>
           <button
             type="button"
@@ -101,6 +146,21 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
             <span>{notified ? '✓ Subscribed' : 'Stay Tuned'}</span>
             <span className={styles.ctaArrow}>→</span>
           </button>
+
+          {/* Gold Sparkle Burst Container */}
+          {burstParticles.length > 0 && (
+            <div className={styles.particleBurstBox}>
+              {burstParticles.map((p) => (
+                <span
+                  key={p.id}
+                  className={styles.burstSparkle}
+                  style={{
+                    transform: `translate(${p.x}px, ${p.y}px) scale(${p.scale})`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </article>

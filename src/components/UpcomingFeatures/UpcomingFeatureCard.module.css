@@ -45,12 +45,82 @@
   100% { transform: scale(1.06) translateY(-10px); opacity: 1; }
 }
 
+/* Floating Ambient Particle Network Overlay */
+.particlesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ambientDot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fde047;
+  box-shadow: 0 0 10px #fde047;
+  opacity: 0.6;
+}
+
+.dot1 { top: 15%; left: 12%; animation: floatDot1 7s ease-in-out infinite alternate; }
+.dot2 { top: 75%; left: 85%; animation: floatDot2 9s ease-in-out infinite alternate; background: #60a5fa; box-shadow: 0 0 10px #60a5fa; }
+.dot3 { top: 30%; left: 80%; animation: floatDot1 8s ease-in-out infinite alternate; }
+.dot4 { top: 80%; left: 20%; animation: floatDot2 10s ease-in-out infinite alternate; background: #a855f7; box-shadow: 0 0 10px #a855f7; }
+.dot5 { top: 50%; left: 50%; animation: floatDot1 6s ease-in-out infinite alternate; }
+
+@keyframes floatDot1 {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-20px) translateX(15px); }
+}
+
+@keyframes floatDot2 {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(25px) translateX(-20px); }
+}
+
 .container {
   max-width: 1280px;
   width: 100%;
   position: relative;
   z-index: 2;
   margin: 0 auto;
+}
+
+/* Live Community Count Banner */
+.communityPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(30, 41, 69, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 0.4rem 1.15rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.livePulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: greenPulse 1.5s infinite;
+}
+
+@keyframes greenPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.communityCountText {
+  font-size: 0.78rem;
+  color: #cbd5e1;
 }
 
 /* Header Typography & Glowing Title */
@@ -159,6 +229,35 @@
 @keyframes cardFloatMatrix {
   0% { transform: translateY(0px); }
   100% { transform: translateY(-8px); }
+}
+
+/* High-Gloss Diagonal Sheen Sweep Reflection */
+.cardGlossSheen {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 58%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.cardContainerHovered .cardGlossSheen {
+  opacity: 1;
+  animation: sheenSweep 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sheenSweep {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
 }
 
 .mouseSpotlight {
@@ -306,6 +405,7 @@
 
 /* Stay Tuned CTA Button Row */
 .cardFooter {
+  position: relative;
   margin-top: auto;
   display: flex;
   justify-content: center;
@@ -350,6 +450,29 @@
   background: rgba(16, 185, 129, 0.15) !important;
   color: #34d399 !important;
   border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Gold Sparkle Burst Container */
+.particleBurstBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.burstSparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fde047;
+  box-shadow: 0 0 8px #fde047;
+  animation: sparkleBurstAnim 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sparkleBurstAnim {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* Bottom Notice Summary Banner */
