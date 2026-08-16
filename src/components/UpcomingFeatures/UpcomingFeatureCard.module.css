@@ -175,17 +175,17 @@
   height: 440px;
   position: relative;
   border-radius: 22px;
-  padding: 1px;
-  background: rgba(22, 28, 48, 0.7);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
+  padding: 1.5px;
+  background: rgba(22, 28, 48, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden; /* KEEPS ALL LIGHTS STRICTLY INSIDE CARD BOUNDS */
   transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 .cardOuter:hover {
   border-color: var(--accent);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 25px var(--accent-20, rgba(212,175,55,0.15)), 0 0 25px var(--accent-20, rgba(212,175,55,0.2));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 0 30px var(--accent-40, rgba(212,175,55,0.25)), 0 0 25px var(--accent-40, rgba(212,175,55,0.3));
 }
 
 .borderGlow { display: none; }
@@ -225,11 +225,12 @@
 
 .topEdgeLight {
   position: absolute;
-  top: 0; left: 10%; right: 10%;
-  height: 2px;
+  top: 0; left: 5%; right: 5%;
+  height: 2.5px;
   z-index: 5;
-  opacity: 0.75;
+  opacity: 0.9;
   border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 12px var(--accent);
 }
 
 .cardGlossSheen {
@@ -239,9 +240,9 @@
   background: linear-gradient(
     45deg,
     transparent 42%,
-    rgba(255,255,255,0.08) 48%,
-    rgba(255,255,255,0.14) 50%,
-    rgba(255,255,255,0.08) 52%,
+    rgba(255,255,255,0.12) 48%,
+    rgba(255,255,255,0.22) 50%,
+    rgba(255,255,255,0.12) 52%,
     transparent 58%
   );
   pointer-events: none;
