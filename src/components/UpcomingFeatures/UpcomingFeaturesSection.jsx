@@ -31,11 +31,11 @@ export const UpcomingFeaturesSection = () => {
 
   return (
     <section className={styles.mainWrapper} aria-labelledby="upcoming-features-heading">
-      {/* Background radial gradient mesh & dynamic ambient light */}
+      {/* Living Ambient Light Mesh */}
       <div className={styles.backgroundMesh} aria-hidden="true" />
       <div className={styles.glowingGridLines} aria-hidden="true" />
 
-      {/* Floating Sparkle Particles Network Canvas Overlay */}
+      {/* Floating Sparkle Particles Network Overlay */}
       <div className={styles.particlesContainer} aria-hidden="true">
         <span className={`${styles.ambientDot} ${styles.dot1}`} />
         <span className={`${styles.ambientDot} ${styles.dot2}`} />
@@ -84,6 +84,7 @@ export const UpcomingFeaturesSection = () => {
           </div>
           <div className={styles.bannerDivider} />
           <div className={styles.bannerRight}>
+            <img src="/veloop-logo.png" alt="VELOOP Logo" style={{ width: '22px', height: '22px', marginRight: '6px' }} />
             <span className={styles.bannerBrand}>VELOOP</span>
             <span className={styles.bannerSubBrand}>REWARDS</span>
             <span className={styles.bannerTrophy}>🏆</span>

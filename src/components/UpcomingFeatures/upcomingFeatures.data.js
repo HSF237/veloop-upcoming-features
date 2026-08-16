@@ -8,6 +8,7 @@ export const upcomingFeaturesData = [
     category: "battle",
     type: "team-battle",
     cta: "Stay Tuned",
+    accent: "#ef4444",
     details: {
       subtitle: "Compete with your team for bonus rewards & glory",
       fullDescription: "Form squads with your friends or get matched into public teams to complete weekly earning quests. Rank at the top of the leaderboard to split exclusive bonus prize pools and earn team trophies.",
@@ -28,6 +29,7 @@ export const upcomingFeaturesData = [
     category: "chance",
     type: "lucky-draw",
     cta: "Stay Tuned",
+    accent: "#d4af37",
     details: {
       subtitle: "Spin the daily fortune wheel for instant cashbacks & gifts",
       fullDescription: "Earn draw tickets by remaining active on VELOOP. Use your tickets to spin the daily Fortune Wheel for instant cashbacks, bonus reward points, and partner voucher rewards.",
@@ -48,6 +50,7 @@ export const upcomingFeaturesData = [
     category: "progress",
     type: "milestone-rewards",
     cta: "Stay Tuned",
+    accent: "#3b82f6",
     details: {
       subtitle: "Achieve key account milestones to unlock exclusive perks",
       fullDescription: "Track your lifetime engagement on VELOOP. Hitting major account milestones (Level 10, 25, 50, 100) automatically unlocks permanent reward boosts, status trophies, and mystery milestone chests.",
@@ -68,6 +71,7 @@ export const upcomingFeaturesData = [
     category: "collectible",
     type: "collectible-cards",
     cta: "Stay Tuned",
+    accent: "#a855f7",
     details: {
       subtitle: "Discover, collect, and complete digital reward card sets",
       fullDescription: "Collect rare digital cards by completing special activity tasks or opening card packs. Complete full themed card sets to trigger instant reward payouts and trade duplicate cards with friends.",
@@ -88,6 +92,7 @@ export const upcomingFeaturesData = [
     category: "surprise",
     type: "surprise-gift",
     cta: "Stay Tuned",
+    accent: "#f59e0b",
     details: {
       subtitle: "Unexpected bonus drops and random gift box rewards",
       fullDescription: "Active users are randomly selected to receive Surprise Gift Boxes on the dashboard. Open your gift box to claim mystery cashbacks, double point passes, and partner voucher rewards.",
@@ -108,6 +113,7 @@ export const upcomingFeaturesData = [
     category: "mystery",
     type: "mystery-chest",
     cta: "Stay Tuned",
+    accent: "#06b6d4",
     details: {
       subtitle: "Discover valuable hidden surprise assets in special chests",
       fullDescription: "Complete eligible platform activities to earn Treasure Keys. Use your keys to unlock Mystery Chests containing unknown high-value rewards, rare cards, or instant point boosts.",
@@ -128,6 +134,7 @@ export const upcomingFeaturesData = [
     category: "network",
     type: "referral-network",
     cta: "Stay Tuned",
+    accent: "#10b981",
     details: {
       subtitle: "Grow your network and unlock ongoing milestone payouts",
       fullDescription: "Expand your VELOOP referral network. As your invited friends reach earning milestones on the platform, you automatically unlock milestone reward drops and passive bonus commissions.",

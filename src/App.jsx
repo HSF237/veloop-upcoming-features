@@ -7,10 +7,9 @@ function App() {
     <div className="app-shell">
       <header className="app-topbar">
         <div className="brand">
-          <span className="brand-mark">V</span>
+          <img src="/veloop-logo.png" alt="VELOOP Logo" className="brand-logo" />
           <span className="brand-name">VELOOP Rewards</span>
         </div>
-        <span className="brand-tag">Home Dashboard Preview</span>
       </header>
 
       <main>
@@ -18,8 +17,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        Task 10 — Upcoming Features Section Redesign · Frontend Development
-        Internship Task
+        Task 10 — Upcoming Features Section · VELOOP Rewards
       </footer>
     </div>
   );
