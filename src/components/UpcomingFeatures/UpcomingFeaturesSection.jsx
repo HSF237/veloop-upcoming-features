@@ -8,14 +8,10 @@ export const UpcomingFeaturesSection = () => {
   const [toastMessage, setToastMessage] = useState(null);
   const [activeModalFeature, setActiveModalFeature] = useState(null);
   const [notifiedFeatures, setNotifiedFeatures] = useState({});
-  const [communityCount, setCommunityCount] = useState(14280);
 
   const handleNotify = (title) => {
-    if (!notifiedFeatures[title]) {
-      setCommunityCount((prev) => prev + 1);
-    }
     setNotifiedFeatures((prev) => ({ ...prev, [title]: true }));
-    setToastMessage(`✨ Priority Access Set! You will get notified the instant ${title} drops.`);
+    setToastMessage(`✨ You will be notified the instant ${title} drops!`);
     setTimeout(() => setToastMessage(null), 3800);
   };
 
@@ -43,15 +39,7 @@ export const UpcomingFeaturesSection = () => {
       </div>
 
       <div className={styles.container}>
-        {/* Live Subscribed Community Counter Pill */}
-        <div className={styles.communityPill}>
-          <span className={styles.livePulseDot} />
-          <span className={styles.communityCountText}>
-            🔥 <strong>{communityCount.toLocaleString()}</strong> Community Members Subscribed for Early Access
-          </span>
-        </div>
-
-        {/* Section Header */}
+        {/* Honest, Clean & Elegant Section Header */}
         <header className={styles.sectionHeader}>
           <div className={styles.eyebrowBadge}>
             <span className={styles.sparkleIcon}>✦</span>
