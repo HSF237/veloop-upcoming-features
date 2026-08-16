@@ -135,15 +135,15 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore }) => {
           <p className={styles.cardDescription}>{data.description}</p>
         </div>
 
-        {/* CTA Button Row with Sliding Arrow & Particle Burst */}
+        {/* CTA Button Row with Sliding Arrow */}
         <div className={styles.cardFooter}>
           <button
             type="button"
-            className={`${styles.stayTunedBtn} ${notified ? styles.stayTunedNotified : ''}`}
+            className={styles.stayTunedBtn}
             onClick={handleCtaClick}
-            aria-label={`${data.cta} for ${data.title}`}
+            aria-label={`Stay Tuned for ${data.title}`}
           >
-            <span>{notified ? '✓ Subscribed' : 'Stay Tuned'}</span>
+            <span>Stay Tuned</span>
             <span className={styles.ctaArrow}>→</span>
           </button>
 
