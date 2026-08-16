@@ -5,6 +5,8 @@ export const upcomingFeaturesData = [
     description: "Team up, complete challenges, compete with others, and aim for the top.",
     badge: "Coming Soon",
     category: "battle",
+    categoryLabel: "Battle",
+    icon: "⚔️",
     type: "team-battle",
     details: {
       subtitle: "Compete with your team for bonus rewards & glory",
@@ -23,6 +25,8 @@ export const upcomingFeaturesData = [
     description: "Try your luck in upcoming reward draws and discover exciting prizes.",
     badge: "Soon",
     category: "chance",
+    categoryLabel: "Chance",
+    icon: "🎰",
     type: "lucky-draw",
     details: {
       subtitle: "Spin the daily fortune wheel for instant cashbacks & gifts",
@@ -41,6 +45,8 @@ export const upcomingFeaturesData = [
     description: "Reach important milestones and unlock special rewards along your journey.",
     badge: "Launching Soon",
     category: "progress",
+    categoryLabel: "Progress",
+    icon: "🏆",
     type: "milestone-rewards",
     details: {
       subtitle: "Achieve key account milestones to unlock exclusive perks",
@@ -59,6 +65,8 @@ export const upcomingFeaturesData = [
     description: "Discover, collect, and complete your VELOOP Rewards card collection.",
     badge: "Stay Tuned",
     category: "collectible",
+    categoryLabel: "Collectibles",
+    icon: "🃏",
     type: "collectible-cards",
     details: {
       subtitle: "Discover, collect, and complete digital reward card sets",
@@ -77,6 +85,8 @@ export const upcomingFeaturesData = [
     description: "Something special could be waiting for you. Stay active and discover surprise rewards.",
     badge: "Under Development",
     category: "surprise",
+    categoryLabel: "Surprise",
+    icon: "🎁",
     type: "surprise-gift",
     details: {
       subtitle: "Unexpected bonus drops and random gift box rewards",
@@ -95,6 +105,8 @@ export const upcomingFeaturesData = [
     description: "Complete eligible activities and discover what reward awaits you.",
     badge: "Coming Soon",
     category: "mystery",
+    categoryLabel: "Mystery",
+    icon: "🔒",
     type: "mystery-chest",
     details: {
       subtitle: "Discover valuable hidden surprise assets in special chests",
@@ -113,6 +125,8 @@ export const upcomingFeaturesData = [
     description: "Grow your referral network and unlock additional milestones as your referrals progress.",
     badge: "Launching Soon",
     category: "network",
+    categoryLabel: "Network",
+    icon: "👥",
     type: "referral-network",
     details: {
       subtitle: "Grow your network and unlock ongoing milestone payouts",
@@ -125,4 +139,15 @@ export const upcomingFeaturesData = [
       releasePhase: "Staging Testing Phase · Launching Soon"
     }
   }
+];
+
+export const CATEGORIES = [
+  { id: "all", label: "All Features", icon: "✨" },
+  { id: "battle", label: "Battle", icon: "⚔️" },
+  { id: "chance", label: "Chance", icon: "🎰" },
+  { id: "progress", label: "Progress", icon: "🏆" },
+  { id: "collectible", label: "Collectibles", icon: "🃏" },
+  { id: "surprise", label: "Surprise", icon: "🎁" },
+  { id: "mystery", label: "Mystery", icon: "🔒" },
+  { id: "network", label: "Network", icon: "👥" }
 ];
