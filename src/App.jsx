@@ -327,8 +327,8 @@ export default function App() {
 
             <div className="rocketTrail">
               <div className="rocket">
-                <img src="/assets/hero_rocket_3d.png" alt="3D Rocket Launch" className="rocketImg" />
-                <img src="/assets/sparkles_graphic_3d.png" alt="Golden Stars Trail" className="rocketStarsOverlay" />
+                <video src="/videos images/rocket.webm" autoPlay muted loop playsInline className="rocketImg" style={{ objectFit: "contain", background: "transparent" }} />
+                
               </div>
             </div>
           </div>
