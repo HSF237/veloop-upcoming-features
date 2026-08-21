@@ -21,7 +21,10 @@
 /* 1. Main Wrapper */
 .mainWrapper {
   position: relative;
-  background-color: var(--navy);
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 3.5rem 1.5rem 6rem;
   min-height: 100vh;
   display: flex;

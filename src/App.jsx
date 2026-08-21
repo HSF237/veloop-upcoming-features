@@ -68,57 +68,46 @@ const features = [
 ];
 
 function FeatureVisual({ type }) {
-  if (type === "battle") {
-    return (
-      <div className="visual battleVisual">
-        <img src="/assets/team_battle_3d.png" alt="Team Battle 3D" className="visualCardImage" />
-      </div>
-    );
-  }
+  const map = {
+    battle: "/videos/team-battle.webm",
+    draw: "/videos/lucky-draw.webm",
+    milestone: "/videos/milestone-rewards.webm",
+    cards: "/videos/collect-cards.webm",
+    gift: "/videos/surprise-gift.webm",
+    mystery: "/videos/mystery-chest.webm",
+    referral: "/videos/referral-network.webm"
+  };
 
-  if (type === "draw") {
-    return (
-      <div className="visual drawVisual">
-        <img src="/assets/lucky_draw_3d.png" alt="Lucky Draw 3D" className="visualCardImage" />
-      </div>
-    );
-  }
+  const staticMap = {
+    battle: "/assets/team_battle_3d.png",
+    draw: "/assets/lucky_draw_3d.png",
+    milestone: "/assets/milestone_rewards_3d.png",
+    cards: "/assets/collect_cards_3d.png",
+    gift: "/assets/surprise_rewards_3d.png",
+    mystery: "/assets/mystery_rewards_3d.png",
+    referral: "/assets/referral_milestone_3d.png"
+  };
 
-  if (type === "milestone") {
-    return (
-      <div className="visual milestoneVisual">
-        <img src="/assets/milestone_rewards_3d.png" alt="Milestone Rewards 3D" className="visualCardImage" />
-      </div>
-    );
-  }
+  const videoUrl = map[type];
+  const imageUrl = staticMap[type];
 
-  if (type === "cards") {
-    return (
-      <div className="visual cardVisual">
-        <img src="/assets/collect_cards_3d.png" alt="Collect Cards 3D" className="visualCardImage" />
-      </div>
-    );
-  }
-
-  if (type === "gift") {
-    return (
-      <div className="visual giftVisual">
-        <img src="/assets/surprise_rewards_3d.png" alt="Surprise Rewards 3D" className="visualCardImage" />
-      </div>
-    );
-  }
-
-  if (type === "mystery") {
-    return (
-      <div className="visual mysteryVisual">
-        <img src="/assets/mystery_rewards_3d.png" alt="Mystery Rewards 3D" className="visualCardImage" />
-      </div>
-    );
-  }
-
+  // We add an error handler to fallback to image if the video fails to load (like team battle)
   return (
-    <div className="visual referralVisual">
-      <img src="/assets/referral_milestone_3d.png" alt="Referral Milestone 3D" className="visualCardImage" />
+    <div className={`visual ${type}Visual`}>
+      <video
+        src={videoUrl}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="visualCardImage"
+        style={{ objectFit: 'contain', background: 'transparent' }}
+        onError={(e) => {
+          e.target.style.display = 'none';
+          e.target.nextSibling.style.display = 'block';
+        }}
+      />
+      <img src={imageUrl} alt={`${type} 3D`} className="visualCardImage" style={{ display: 'none' }} />
     </div>
   );
 }
