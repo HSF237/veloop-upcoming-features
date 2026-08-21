@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
 import { FeatureVisual } from './FeatureVisuals';
+import { audioEngine } from './AudioEngine';
 
 export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef: externalCardRef }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -30,7 +31,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -42,14 +43,15 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     setRotation({
-      x: ((y - rect.height / 2) / (rect.height / 2)) * -7,
-      y: ((x - rect.width / 2) / (rect.width / 2)) * 7,
+      x: ((y - rect.height / 2) / (rect.height / 2)) * -5,
+      y: ((x - rect.width / 2) / (rect.width / 2)) * 5,
     });
     setSpotlight({ x: (x / rect.width) * 100, y: (y / rect.height) * 100, opacity: 1 });
   };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    audioEngine.playHover();
   };
 
   const handleMouseLeave = () => {
@@ -58,21 +60,25 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
     setSpotlight({ x: 50, y: 50, opacity: 0 });
   };
 
-  const handleKnowMoreClick = (e) => {
-    e.stopPropagation();
+  const handleCardClick = () => {
+    audioEngine.playClick();
     if (onKnowMore) onKnowMore(data);
   };
 
   const handleCtaClick = (e) => {
     e.stopPropagation();
-    const newParticles = Array.from({ length: 10 }).map((_, i) => ({
+    audioEngine.playClick();
+    const newParticles = Array.from({ length: 12 }).map((_, i) => ({
       id: Date.now() + i,
-      x: (Math.random() - 0.5) * 80,
-      y: (Math.random() - 0.5) * 50 - 25,
+      x: (Math.random() - 0.5) * 90,
+      y: (Math.random() - 0.5) * 60 - 30,
       scale: Math.random() * 0.8 + 0.4,
     }));
     setBurstParticles(newParticles);
-    setTimeout(() => setBurstParticles([]), 800);
+    setTimeout(() => {
+      setBurstParticles([]);
+      if (onKnowMore) onKnowMore(data);
+    }, 180);
   };
 
   return (
@@ -83,26 +89,21 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
         '--accent': accent,
         '--accent-20': accent + '33',
         '--accent-40': accent + '66',
-        transitionDelay: `${index * 80}ms`,
-        animationDelay: `${index * 0.15}s`,
+        transitionDelay: `${index * 60}ms`,
       }}
     >
-      {/* Animated border glow layer */}
-      <div className={styles.borderGlow} />
-
       <article
         ref={setRefs}
         className={`${styles.cardContainer} ${isHovered ? styles.cardContainerHovered : ''}`}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onClick={handleKnowMoreClick}
+        onClick={handleCardClick}
         tabIndex={0}
         style={{
           transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         }}
       >
-        <div className={styles.noiseOverlay} />
         <div className={styles.cardGlossSheen} />
         <div className={styles.topEdgeLight} style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
 
@@ -110,7 +111,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
         <div
           className={styles.mouseSpotlight}
           style={{
-            background: `radial-gradient(350px circle at ${spotlight.x}% ${spotlight.y}%, ${accent}33, transparent 70%)`,
+            background: `radial-gradient(320px circle at ${spotlight.x}% ${spotlight.y}%, ${accent}22, transparent 70%)`,
             opacity: spotlight.opacity,
           }}
         />
@@ -118,7 +119,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
         <div className={styles.cardInner}>
           {/* Header Row */}
           <div className={styles.cardHeader}>
-            <span className={styles.numberBadge} style={{ borderColor: accent + '55', color: accent }}>
+            <span className={styles.numberBadge} style={{ borderColor: accent + '44', color: accent }}>
               {data.number}
             </span>
             <span className={styles.badge}>{data.badge}</span>
@@ -133,6 +134,98 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
           <div className={styles.cardContent}>
             <h3 className={styles.cardTitle}>{data.title}</h3>
             <p className={styles.cardDescription}>{data.description}</p>
+
+            {/* Feature Metric Display */}
+            {data.type === 'team-battle' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.squadProgressRow}>
+                  <div className={styles.avatarGroup}>
+                    <span className={styles.avatarDot} style={{ background: '#ef4444' }} />
+                    <span className={styles.avatarDot} style={{ background: '#3b82f6' }} />
+                    <span className={styles.avatarDot} style={{ background: '#d4af37' }} />
+                  </div>
+                  <span className={styles.metricText}>
+                    <strong>{data.squadCurrent}/{data.squadTotal}</strong> Squad Progress
+                  </span>
+                </div>
+                <div className={styles.miniProgressBar}>
+                  <div className={styles.miniProgressFill} style={{ width: `${(data.squadCurrent / data.squadTotal) * 100}%`, background: accent }} />
+                </div>
+                <div className={styles.rewardTagPill}>
+                  <span>🏆</span>
+                  <span>{data.squadReward}</span>
+                </div>
+              </div>
+            )}
+
+            {data.type === 'lucky-draw' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.ticketPillBox}>
+                  <span className={styles.pillIcon}>🎟️</span>
+                  <span className={styles.pillMainText}>{data.ticketText}</span>
+                  <span className={styles.pillSubText}>{data.ticketSub}</span>
+                </div>
+              </div>
+            )}
+
+            {data.type === 'milestone-rewards' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.stepperRow}>
+                  {[1, 2, 3, 4, 5].map((step) => (
+                    <span
+                      key={step}
+                      className={`${styles.stepNode} ${step === data.milestoneCurrent ? styles.activeStepNode : ''}`}
+                    >
+                      0{step}
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.rewardUnlockPill}>
+                  <span>👑</span>
+                  <span>{data.milestoneUnlock}: <strong>{data.milestoneReward}</strong></span>
+                </div>
+              </div>
+            )}
+
+            {data.type === 'collectible-cards' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.collectionMetaRow}>
+                  <span className={styles.collectionCountText}>
+                    <strong>{data.collectedCount} / {data.collectedTotal}</strong> Collected
+                  </span>
+                </div>
+                <div className={styles.miniProgressBar}>
+                  <div className={styles.miniProgressFill} style={{ width: '15%', background: accent }} />
+                </div>
+              </div>
+            )}
+
+            {data.type === 'surprise-gift' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.tagArrowBox}>
+                  <span>🎁 {data.tagTitle}</span>
+                  <span className={styles.tagSubHighlight}>{data.tagSub} ›</span>
+                </div>
+              </div>
+            )}
+
+            {data.type === 'mystery-chest' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.secretInputDemo}>
+                  <input type="text" readOnly placeholder={data.placeholderCode} className={styles.demoCodeInput} />
+                  <span className={styles.codeArrow}>›</span>
+                </div>
+              </div>
+            )}
+
+            {data.type === 'referral-network' && (
+              <div className={styles.metricWrapper}>
+                <div className={styles.referralTiersRow}>
+                  <span className={styles.refPill}>{data.tier1}</span>
+                  <span className={styles.refPill}>{data.tier2}</span>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* CTA */}
@@ -141,7 +234,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
               type="button"
               className={styles.stayTunedBtn}
               onClick={handleCtaClick}
-              aria-label={`Stay Tuned for ${data.title}`}
+              aria-label={`Preview ${data.title}`}
               style={{ '--btn-accent': accent }}
             >
               <span>Stay Tuned</span>
@@ -157,7 +250,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
                     style={{
                       transform: `translate(${p.x}px, ${p.y}px) scale(${p.scale})`,
                       background: accent,
-                      boxShadow: `0 0 8px ${accent}`,
+                      boxShadow: `0 0 6px ${accent}`,
                     }}
                   />
                 ))}
@@ -171,3 +264,4 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
 };
 
 export default UpcomingFeatureCard;
+

@@ -459,47 +459,43 @@ export const FeatureVisual = ({ type }) => {
               </linearGradient>
             </defs>
 
-            {/* Network Laser Connection Lines */}
-            <g stroke="#3b82f6" strokeWidth="2.5" strokeDasharray="5 3" className={styles.laserLine}>
+            {/* Network Connection Lines */}
+            <g stroke="#3b82f6" strokeWidth="2.5" strokeDasharray="5 3">
               <line x1="80" y1="65" x2="40" y2="30" />
               <line x1="80" y1="65" x2="120" y2="30" />
               <line x1="80" y1="65" x2="36" y2="100" />
               <line x1="80" y1="65" x2="124" y2="100" />
             </g>
 
-            {/* Clean Satellite Member Nodes without Filter Box Rectangles */}
-            <g transform="translate(40, 30)" className={styles.satelliteNode}>
-              <circle cx="0" cy="0" r="14" fill="rgba(56, 189, 248, 0.2)" />
-              <circle cx="0" cy="0" r="11" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
+            {/* Satellite Member Nodes */}
+            <g transform="translate(40, 30)">
+              <circle cx="0" cy="0" r="13" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
               <circle cx="0" cy="-3" r="3.5" fill="#60a5fa" />
               <path d="M-5,6 C-5,1 5,1 5,6" fill="#60a5fa" />
             </g>
 
-            <g transform="translate(120, 30)" className={styles.satelliteNodeAlt}>
-              <circle cx="0" cy="0" r="14" fill="rgba(56, 189, 248, 0.2)" />
-              <circle cx="0" cy="0" r="11" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
+            <g transform="translate(120, 30)">
+              <circle cx="0" cy="0" r="13" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
               <circle cx="0" cy="-3" r="3.5" fill="#60a5fa" />
               <path d="M-5,6 C-5,1 5,1 5,6" fill="#60a5fa" />
             </g>
 
-            <g transform="translate(36, 100)" className={styles.satelliteNode}>
-              <circle cx="0" cy="0" r="14" fill="rgba(56, 189, 248, 0.2)" />
-              <circle cx="0" cy="0" r="11" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
+            <g transform="translate(36, 100)">
+              <circle cx="0" cy="0" r="13" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
               <circle cx="0" cy="-3" r="3.5" fill="#60a5fa" />
               <path d="M-5,6 C-5,1 5,1 5,6" fill="#60a5fa" />
             </g>
 
-            <g transform="translate(124, 100)" className={styles.satelliteNodeAlt}>
-              <circle cx="0" cy="0" r="14" fill="rgba(56, 189, 248, 0.2)" />
-              <circle cx="0" cy="0" r="11" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
+            <g transform="translate(124, 100)">
+              <circle cx="0" cy="0" r="13" fill="#161b30" stroke="#60a5fa" strokeWidth="2.2" />
               <circle cx="0" cy="-3" r="3.5" fill="#60a5fa" />
               <path d="M-5,6 C-5,1 5,1 5,6" fill="#60a5fa" />
             </g>
 
             {/* Central Leader Node */}
-            <g className={styles.centerNode} transform="translate(80, 65)">
-              <circle cx="0" cy="0" r="24" fill="rgba(212, 175, 55, 0.22)" />
-              <circle cx="0" cy="0" r="18" fill="#171e38" stroke="url(#netGold)" strokeWidth="3.2" />
+            <g transform="translate(80, 65)">
+              <circle cx="0" cy="0" r="22" fill="rgba(212, 175, 55, 0.2)" />
+              <circle cx="0" cy="0" r="17" fill="#171e38" stroke="url(#netGold)" strokeWidth="3" />
               <circle cx="0" cy="-4" r="5" fill="#fde047" />
               <path d="M-8,8 C-8,1 8,1 8,8" fill="#fde047" />
             </g>
@@ -511,5 +507,3 @@ export const FeatureVisual = ({ type }) => {
       return null;
   }
 };
-
-export default FeatureVisual;
