@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './UpcomingFeatureCard.module.css';
-import { FeatureVisual } from './FeatureVisuals';
+import { FeatureMedia } from './FeatureMedia';
 import { audioEngine } from './AudioEngine';
 
 export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef: externalCardRef }) => {
@@ -127,7 +127,7 @@ export const UpcomingFeatureCard = ({ data, index, onNotify, onKnowMore, cardRef
 
           {/* 3D Visual */}
           <div className={styles.visualContainer} aria-hidden="true">
-            <FeatureVisual type={data.type} />
+            <FeatureMedia type={data.type} videoUrl={data.videoUrl} title={data.title} />
           </div>
 
           {/* Content */}
