@@ -69,18 +69,18 @@ const features = [
 
 function FeatureVisual({ type }) {
   const map = {
-    battle: "/videos/team-battle.webm",
-    draw: "/videos/lucky-draw.webm",
-    milestone: "/videos/milestone-rewards.webm",
-    cards: "/videos/collect-cards.webm",
-    gift: "/videos/surprise-gift.webm",
-    mystery: "/videos/mystery-chest.webm",
-    referral: "/videos/referral-network.webm"
+    battle: "/videos images/team battle.webm",
+    draw: "/videos images/lucky.webm",
+    milestone: "/videos images/milestone rewards.webm",
+    cards: "/videos images/colelct cards.webm",
+    gift: "/videos images/gift box.webm",
+    mystery: "/videos images/mystery rewads.webm",
+    referral: "/videos images/milestone reqrds.webm"
   };
 
   const staticMap = {
     battle: "/assets/team_battle_3d.png",
-    draw: "/assets/lucky_draw_3d.png",
+    draw: "/assets/lucky_draw_tickets.jpg",
     milestone: "/assets/milestone_rewards_3d.png",
     cards: "/assets/collect_cards_3d.png",
     gift: "/assets/surprise_rewards_3d.png",
@@ -94,8 +94,7 @@ function FeatureVisual({ type }) {
   // We add an error handler to fallback to image if the video fails to load (like team battle)
   return (
     <div className={`visual ${type}Visual`}>
-      <video
-        src={videoUrl}
+      <video key={videoUrl} src={videoUrl}
         autoPlay
         muted
         loop
