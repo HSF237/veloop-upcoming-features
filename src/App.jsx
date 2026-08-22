@@ -72,7 +72,7 @@ function FeatureVisual({ type }) {
     battle: "/videos images/team battle.webm",
     draw: "/videos images/lucky.webm",
     milestone: "/videos images/milestone rewards.webm",
-    cards: "/videos images/colelct cards.webm",
+    cards: "/videos images/colelct cards.mp4",
     gift: "/videos images/gift box.webm",
     mystery: "/videos images/mystery rewads.webm",
     referral: "/videos images/milestone reqrds.webm"
@@ -106,7 +106,7 @@ function FeatureVisual({ type }) {
           e.target.nextSibling.style.display = 'block';
         }}
       />
-      <img src={imageUrl} alt={`${type} 3D`} className="visualCardImage" style={{ display: 'none' }} />
+      <img key={videoUrl + "-img"} src={imageUrl} alt={`${type} 3D`} className="visualCardImage" style={{ display: "none" }} />
     </div>
   );
 }
