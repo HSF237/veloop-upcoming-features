@@ -271,6 +271,12 @@ function Modal({ feature, onClose }) {
 
 export default function App() {
   const [selectedFeature, setSelectedFeature] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredFeatures = features.filter(f => 
+    f.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    f.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="app">
@@ -288,7 +294,7 @@ export default function App() {
 
         <div className="searchBox">
           <span>⌕</span>
-          <input placeholder="Search rewards, features..." />
+          <input placeholder="Search rewards, features..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
           <kbd>⌘ K</kbd>
         </div>
 
@@ -355,7 +361,7 @@ export default function App() {
 
         <section className="featuresSection">
           <div className="featureGrid">
-            {features.map((feature) => (
+            {filteredFeatures.map((feature) => (
               <FeatureCard
                 key={feature.id}
                 feature={feature}
